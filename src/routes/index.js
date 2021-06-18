@@ -20,10 +20,6 @@ router.post('/add', async (req, res) => {
   poem.id = key;
   await db.set("key", key);
   await db.set(`${key}`, poem);
-  /*const keys = await db.list();
-  for(let i = 0; i < keys.length - 1; i++){
-    await db.delete(keys[i]);
-  }*/
   res.redirect('/');
 })
 

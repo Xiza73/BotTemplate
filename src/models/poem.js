@@ -1,4 +1,4 @@
-const { Schema, Mongoose } = require('mongoose');
+const { Schema } = require('mongoose');
 const Schema = Schema();
 
 const Poem = new Schema({

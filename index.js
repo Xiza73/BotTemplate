@@ -2,14 +2,6 @@ const path = require('path');
 const express = require('express');
 const morgan = require('morgan');
 const app = express();
-
-//Discord
-const Discord = require('discord.js');
-
-
-//EndDiscord
-
-// import routes
 const indexRoutes = require('./src/routes/index')
 
 //settings
@@ -34,7 +26,7 @@ app.listen(app.get('port'), () => {
 
 
 /* DISCORD */
-const { Client, Collection, MessageAttachment } = require("discord.js");
+const { Client, Collection } = require("discord.js");
 const { config } = require("dotenv");
 const fs = require("fs");
 const client = new Client({
@@ -44,7 +36,6 @@ client.commands = new Collection();
 client.aliases = new Collection();
 client.categories = fs.readdirSync("./commands/");
 
-//require('dotenv').config()
 config({
     path: "/.env"
 });
@@ -93,7 +84,7 @@ function presence(){
     client.user.setPresence({
         status: "online",
         activity: {
-            name: ">help",
+            name: `${prefix}help`,
             type: "PLAYING"
         }
     })
@@ -105,7 +96,7 @@ function action(comando, msg){
   //COMANDOS
   var comandos = {
     "hola" : function(){
-      msg.channel.send(`Hola ${msg.member.user} 💕`);
+      msg.channel.send(`Hola ${msg.member.user}!`);
     },
   };
 
@@ -115,9 +106,4 @@ function action(comando, msg){
 
 
   return comandos[comando]();
-}
-
-
-function random(min, max) {
-  return Math.floor(Math.random() * (max + 1 - min)) + min;
 }
